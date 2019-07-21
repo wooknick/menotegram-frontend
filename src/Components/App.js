@@ -34,7 +34,7 @@ export default () => {
                 <GloabalStyles />
                 <Router>
                     <>
-                        <Header />
+                        {isLoggedIn && <Header />}
                         <Wrapper>
                             <Routes isLoggedIn={isLoggedIn} />
                             <Footer />

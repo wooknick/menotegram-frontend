@@ -1,6 +1,11 @@
 import React from "react";
+import styled from "styled-components";
 import Button from "../Button";
 
-export default ({ isFollowing, onClick }) => (
-    <Button text={isFollowing ? "Unfollow" : "Follow"} onClick={onClick} />
+const EButton = styled(Button)`
+    width: ${props => props.width};
+`;
+
+export default ({ width, isFollowing, onClick }) => (
+    <EButton width={width} text={isFollowing ? "Unfollow" : "Follow"} onClick={onClick} />
 );

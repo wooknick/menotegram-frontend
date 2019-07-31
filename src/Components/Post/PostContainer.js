@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import useInput from "../../Hooks/useInput";
 import PostPresenter from "./PostPresenter";
@@ -27,18 +27,19 @@ const PostContainer = ({
     const addCommentMutation = useMutation(ADD_COMMENT, {
         variables: { postId: id, text: comment.value }
     });
-    const slide = useCallback(() => {
-        const totalFiles = files.length;
-        if (currentItem === totalFiles - 1) {
-            setCurrentItem(0);
-        } else {
-            setCurrentItem(currentItem + 1);
-        }
-    }, [currentItem, files]);
 
     useEffect(() => {
-        setTimeout(slide, 3000);
-    }, [currentItem, slide]); // currentItem이 변할 때 다시 동작함.
+        const totalFiles = files.length;
+        let ff;
+        if (currentItem === totalFiles - 1) {
+            ff = setTimeout(() => setCurrentItem(0), 3000);
+            // ff();
+        } else {
+            ff = setTimeout(() => setCurrentItem(currentItem + 1), 3000);
+            // ff();
+        }
+        return () => clearTimeout(ff);
+    }, [currentItem, files]); // currentItem이 변할 때 다시 동작함.
 
     const toggleLike = async () => {
         toggleLikeMutation();

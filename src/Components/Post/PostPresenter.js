@@ -145,11 +145,7 @@ export default ({
                     <CommentIcon />
                 </Button>
             </Buttons>
-            <FatText
-                text={
-                    likeCount === 1 || likeCount === 0 ? `${likeCount} like` : `${likeCount} likes`
-                }
-            />
+            <FatText text={likeCount === 1 ? "1 like" : `${likeCount} likes`} />
             <Caption>
                 <FatText text={username} /> {caption}
             </Caption>
